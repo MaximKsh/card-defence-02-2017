@@ -4,5 +4,5 @@
     "castleRange": 0.2,
     "castleAttack": 5,
     "castleTimeAttack": 500,
-    "readyStateTimeout": 20
+    "readyStateTimeout": -1
 }

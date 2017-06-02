@@ -184,9 +184,7 @@ public class TimeoutService {
         try {
             // Семафор на таймаутс уже должен стоять
             deleteSemaphore.acquire();
-            for(TimeoutConnectionPair pair: toDelete) {
-                timeouts.remove(pair.getTimeout(), pair);
-            }
+            timeouts.values().removeAll(toDelete);
             toDelete.clear();
         } catch (InterruptedException e) {
             logger.error("lock exception", e);
