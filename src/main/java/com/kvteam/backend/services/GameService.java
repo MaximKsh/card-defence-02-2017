@@ -295,11 +295,11 @@ public class GameService {
         // Выданные карты сохраняются в базу
         final List<CardData> forDefenceCardData = forDefence
                 .stream()
-                .map(p -> new CardData(p.getAlias()))
+                .map(p -> new CardData(p.getAlias(), p.getSide().toString()))
                 .collect(Collectors.toList());
         final List<CardData> forAttackCardData = forAttack
                 .stream()
-                .map(p -> new CardData(p.getAlias()))
+                .map(p -> new CardData(p.getAlias(), p.getSide().toString()))
                 .collect(Collectors.toList());
         dbExecutorService.execute( () -> {
             try {
@@ -390,9 +390,9 @@ public class GameService {
 
         // Инфа переводится в формат общения клиент-сервер и отправляется и клиенту
         final List<CardData> forAttackCardData =
-                forAttack.stream().map(p -> new CardData(p.getAlias())).collect(Collectors.toList());
+                forAttack.stream().map(p -> new CardData(p.getAlias(), p.getSide().toString())).collect(Collectors.toList());
         final List<CardData> forDefenceCardData =
-                forDefence.stream().map(p -> new CardData(p.getAlias())).collect(Collectors.toList());
+                forDefence.stream().map(p -> new CardData(p.getAlias(), p.getSide().toString())).collect(Collectors.toList());
         final GameStartData startDataAttack = new GameStartData(
                 gameID,
                 defender.getUsername(),
@@ -553,12 +553,12 @@ public class GameService {
             createMove(gameID, forAttack, forDefence);
 
             final List<CardData> forAttackCardData =
-                    forAttack.stream().map(p -> new CardData(p.getAlias())).collect(Collectors.toList());
+                    forAttack.stream().map(p -> new CardData(p.getAlias(), p.getSide().toString())).collect(Collectors.toList());
             final CardsForNextMoveGameServerData cardAttackData =
                     new CardsForNextMoveGameServerData(gameID, forAttackCardData);
 
             final List<CardData> forDefenceCardData =
-                    forDefence.stream().map(p -> new CardData(p.getAlias())).collect(Collectors.toList());
+                    forDefence.stream().map(p -> new CardData(p.getAlias(), p.getSide().toString())).collect(Collectors.toList());
             final CardsForNextMoveGameServerData cardDefenceData =
                     new CardsForNextMoveGameServerData(gameID, forDefenceCardData);
 

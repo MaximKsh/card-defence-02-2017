@@ -3,6 +3,7 @@ package com.kvteam.backend.dataformats;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 
 /**
@@ -16,8 +17,9 @@ public class PositionedCardData extends CardData {
     @JsonCreator
     public PositionedCardData(
             @JsonProperty("alias") @NotNull String alias,
-            @JsonProperty("pos") @NotNull PointData pointData) {
-        super(alias);
+            @JsonProperty("pos") @NotNull PointData pointData,
+            @JsonProperty("side") @Nullable String side) {
+        super(alias, side);
         this.pointData = pointData;
     }
 

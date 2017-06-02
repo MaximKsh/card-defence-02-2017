@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kvteam.backend.dataformats.*;
 import com.kvteam.backend.gameplay.CardManager;
 import com.kvteam.backend.gameplay.GameplaySettings;
+import com.kvteam.backend.gameplay.Side;
 import com.kvteam.backend.websockets.IPlayerConnection;
 import com.kvteam.backend.websockets.PlayerConnection;
 import org.junit.Assert;
@@ -112,9 +113,9 @@ public class GameServiceTest {
         final List<PositionedCardData> attackCards =
                 new ArrayList<>();
         attackCards.add(new PositionedCardData(msg1.getAllowedCards().get(0).getAlias(),
-                new PointData(0, 0)));
+                new PointData(0, 0), Side.ATTACKER.toString()));
         attackCards.add(new PositionedCardData(msg2.getAllowedCards().get(0).getAlias(),
-                new PointData(1, 0)));
+                new PointData(1, 0), Side.DEFENDER.toString()));
         final ReadyClientData readyClient1 = new ReadyClientData(
                 GameClientData.READY,
                 msg1.getGameID(),
