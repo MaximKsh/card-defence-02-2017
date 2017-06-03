@@ -341,14 +341,12 @@ public class GameService {
             GameDbService.WinnerType winner,
             IPlayerConnection me,
             IPlayerConnection other) throws IOException{
-        dbExecutorService.execute(() -> {
-            try{
-                dbService.completeMatch(gameID, winner);
-                dbService.updateRating(gameID);
-            }catch(SQLException e){
-                logger.error("sql exception", e);
-            }
-        });
+        try{
+            dbService.completeMatch(gameID, winner);
+            dbService.updateRating(gameID);
+        }catch(SQLException e){
+            logger.error("sql exception", e);
+        }
         cardManager.deletePool(gameID);
         matchContexts.remove(gameID);
         me.markAsCompletion();
